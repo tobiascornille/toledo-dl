@@ -32,7 +32,7 @@ python3 toledo-dl.py [INPUT_FILE]
 The script will create a new directory per url. This directory will contain the downloaded videos and the sped-up versions. If you re-run the script, it won't download or speed up the videos again, given that you don't change the name of the files/directories. This means you can re-run this script periodically and only process the new videos on the Toledo page. Do keep in mind you have to download your cookies again every time, because they expire quickly.
 
 ### Extra options
-toledo-dl uses the default Jumpcutter settings. If you want to change the Jumpcutter configuration, you can run 
+If you want to change the Jumpcutter configuration, you can run 
 ``` 
 cd jumpcutter
 python3 jumpcutter.py --help

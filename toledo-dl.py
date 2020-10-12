@@ -43,7 +43,7 @@ def dl_url(url):
       video_path = str(path)
       if not pathlib.Path('{}_ALTERED'.format(video_path)).is_file():
         print(video_path)
-        subprocess.run('cd jumpcutter; python3 jumpcutter.py --input_file "../{}"'.format(video_path), shell=True)
+        subprocess.run('cd jumpcutter; python3 jumpcutter.py --input_file "../{}" -snd 1 -sil 20 -fm 6'.format(video_path), shell=True)
 
 
 # Cookies
