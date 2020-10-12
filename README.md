@@ -46,7 +46,7 @@ python3 toledo-dl.py example.txt
 ```
 
 ## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Pull requests are welcome.
 
 ## Disclaimer
 This script was made to download Toledo videos for personal use only. Don't redistribute the downloaded videos, as they're still the intellectual property of the lecturer/university.
