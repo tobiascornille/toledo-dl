@@ -38,12 +38,12 @@ def dl_url(url):
     print('Downloading video {}/{}'.format(idx + 1, len(videos)))
     subprocess.run('cd {}; youtube-dl -f "[protocol=m3u8_native]" kaltura:{}:{}'.format(dir_name, video[0], video[1]), shell=True)
 
-  # Shortens videos
-  for path in dir_path.glob('*'):
-      video_path = str(path)
-      if not video_path.endswith('_ALTERED.mp4') and not pathlib.Path('{}_ALTERED.mp4'.format(video_path[:-4])).is_file():
-        print('Shortening video {}'.format(video_path))
-        subprocess.run('cd jumpcutter; python3 jumpcutter.py --input_file "../{}" -snd 1 -sil 20 -fm 6'.format(video_path), shell=True)
+  # # Shortens videos
+  # for path in dir_path.glob('*'):
+  #     video_path = str(path)
+  #     if not video_path.endswith('_ALTERED.mp4') and not pathlib.Path('{}_ALTERED.mp4'.format(video_path[:-4])).is_file():
+  #       print('Shortening video {}'.format(video_path))
+  #       subprocess.run('cd jumpcutter; python3 jumpcutter.py --input_file "../{}" -snd 1 -sil 20 -fm 6'.format(video_path), shell=True)
 
 
 # Cookies
