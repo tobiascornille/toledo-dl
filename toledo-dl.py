@@ -17,8 +17,10 @@ def dl_url(url, cj):
   # Scrape video information from Toledo page
   r = requests.get(url, cookies=cj)
   html_content = r.text
+  title = None
   if ('Kies een instelling' in html_content):
     print('Authentication failed. Please refresh your cookies.')
+    return
   for line in iter(html_content.splitlines()):
     if '<iframe name="KalturaIframe"' in line:
       pattern = '/p/(.+)/sp/.*/entry_id/(.*)/version'
