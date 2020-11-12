@@ -8,6 +8,8 @@ It downloads all videos from one or more Toledo pages ~~and automatically runs J
 
 The fork of Jumpcutter I was using in this script caused a segmentation fault (I think it always ran out of memory at a certain point), so I commented it away. I'm planning to replace Jumpcutter with auto-editor https://github.com/WyattBlue/auto-editor, but issue #85 prevents me from actually being able to use it.
 
+In the meantime Windows users can use a modified script on the branch jumpcutter-windows (https://github.com/tobiascornille/toledo-dl/tree/jumpcutter-windows) that uses the jumpcutter.exe executable.
+
 ## Installation
 - Install youtube-dl: https://gitlab.com/ytdl-org/youtube-dl#installation 
 - ~~Install jumpcutter in this directory: https://github.com/Lamaun/jumpcutter#building-without-nix~~
