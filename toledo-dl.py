@@ -7,6 +7,7 @@ import pathlib
 import hashlib
 import sys
 import os
+import html
 
 
 def dl_url(url, cj):
@@ -28,11 +29,20 @@ def dl_url(url, cj):
         videos.append((kaltura_p, kaltura_entry_id))
       except:
         print("Regex matching failed on: " + line)
+    elif 'var courseTitle =' in line:
+      pattern = '"(.+)"'
+      regex_res = re.search(pattern, line)
+      try:
+        title_encoded = regex_res.group(1)
+        title_decoded = html.unescape(title_encoded).strip().replace(' ', '_')
+        title = re.sub(r'(?u)[^-\w.]', '', title_decoded)
+      except:
+        print("Regex matching failed on: " + line)
 
   print('Found {} videos'.format(len(videos)))
 
   # Make directory for videos
-  dir_name = 'toledo-dl-{}'.format(int(hashlib.sha512(url.encode()).hexdigest(), 16) % 262144)
+  dir_name = title if title else 'toledo-dl-{}'.format(int(hashlib.sha512(url.encode()).hexdigest(), 16) % 262144)
   dir_path = pathlib.Path(dir_name)
   dir_path.mkdir(exist_ok=True)
 
