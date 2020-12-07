@@ -11,7 +11,7 @@ The fork of Jumpcutter I was using in this script caused a segmentation fault (I
 In the meantime Windows users can use a modified script on the branch jumpcutter-windows (https://github.com/tobiascornille/toledo-dl/tree/jumpcutter-windows) that uses the jumpcutter.exe executable.
 
 ## Installation
-- Install youtube-dl: https://gitlab.com/ytdl-org/youtube-dl#installation 
+- Install youtube-dl: https://github.com/ytdl-org/youtube-dl#installation 
 - ~~Install jumpcutter in this directory: https://github.com/Lamaun/jumpcutter#building-without-nix~~
 - Install the cookies.txt browser extension: https://chrome.google.com/webstore/detail/njabckikapfpffapmjgojcnbfjonfjfg
 
