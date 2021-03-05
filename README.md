@@ -2,15 +2,15 @@
 
 **toledo-dl is a Python script for downloading Kaltura videos from Toledo**
 
-It downloads all videos from one or more Toledo pages ~~and automatically runs Jumpcutter on the downloaded files afterwards. Jumpcutter speeds up the silent parts of a video, so you can expect to shorten a lecture by 15-30 minutes. Afterwards, you can of course still watch the video sped up using your favorite video player, since toledo-dl outputs regular .mp4 files.~~
+It downloads all videos from one or more Toledo pages and automatically runs Jumpcutter on the downloaded files afterwards. Jumpcutter speeds up the silent parts of a video, so you can expect to shorten a lecture by 15-30 minutes. Afterwards, you can of course still watch the video sped up using your favorite video player, since toledo-dl outputs regular .mp4 files.
 
-~~:warning: As Jumpcutter runs, it saves every frame of the video as an image file in a temporary folder. If your video is long, this could take a LOT of space. It also takes a lot of time, but since this tool is automatic, you can just leave it running in the background.~~
+:warning: As Jumpcutter runs, it saves every frame of the video as an image file in a temporary folder. If your video is long, this could take a LOT of space. It also takes a lot of time, but since this tool is automatic, you can just leave it running in the background.
 
 The fork of Jumpcutter I was using in this script caused a segmentation fault (I think it always ran out of memory at a certain point), so I commented it away. I'm planning to replace Jumpcutter with auto-editor https://github.com/WyattBlue/auto-editor, but issue #85 prevents me from actually being able to use it.
 
 ## Installation
 - Install youtube-dl: https://github.com/ytdl-org/youtube-dl#installation 
-- ~~Install jumpcutter in this directory: https://github.com/Lamaun/jumpcutter#building-without-nix~~
+- Install jumpcutter in this directory: https://github.com/logwet/jumpcutter
 - Install the cookies.txt browser extension: https://chrome.google.com/webstore/detail/njabckikapfpffapmjgojcnbfjonfjfg
 
 :warning:	There seems to be a problem with the cookies.txt browser extension. As a work-around, you can install the EditThisCookie browser extension http://www.editthiscookie.com/
@@ -29,15 +29,7 @@ Do every time:
 ```
 python3 toledo-dl.py [INPUT_FILE]
 ```
-The script will create a new directory per url. This directory will contain the downloaded videos ~~and the sped-up versions~~. If you re-run the script, it won't download or speed up the videos again, given that you don't change the name of the files/directories. This means you can re-run this script periodically and only process the new videos on the Toledo page. Do keep in mind you have to download your cookies again every time, because they expire quickly.
-
-### Extra options
-~~If you want to change the Jumpcutter configuration, you can run~~
-``` 
-cd jumpcutter
-python3 jumpcutter.py --help
-``` 
-~~to see the list of all available commands and make changes on line 46 of toledo-dl.py~~
+The script will create a new directory per url. This directory will contain the downloaded videos and the sped-up versions. If you re-run the script, it won't download or speed up the videos again, given that you don't change the name of the files/directories. This means you can re-run this script periodically and only process the new videos on the Toledo page. Do keep in mind you have to download your cookies again every time, because they expire quickly.
 
 ### Example
 See `example.txt` for an example of the url file.
