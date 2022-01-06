@@ -6,6 +6,7 @@ import subprocess
 import pathlib
 import hashlib
 import sys
+import os
 
 
 def dl_url(url):
@@ -32,11 +33,15 @@ def dl_url(url):
   dir_name = 'toledo-dl-{}'.format(int(hashlib.sha512(url.encode()).hexdigest(), 16) % 262144)
   dir_path = pathlib.Path(dir_name)
   dir_path.mkdir(exist_ok=True)
+  # For some reason cd command doesn't work on Windows. Took it out of the subprocess call.
+  os.chdir(dir_path)
 
   # Download videos using youtube-dl
   for idx, video in enumerate(videos):
     print('Downloading video {}/{}'.format(idx + 1, len(videos)))
-    subprocess.run('cd {}; youtube-dl -f "[protocol=m3u8_native]" kaltura:{}:{}'.format(dir_name, video[0], video[1]), shell=True)
+    subprocess.run('youtube-dl -f "[protocol=m3u8_native]" kaltura:{}:{}'.format(video[0], video[1]), shell=True)
+  # Change back to parent folder after downloading all videos in list.
+  os.chdir('..')
 
   # # Shortens videos
   # for path in dir_path.glob('*'):
