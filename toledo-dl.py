@@ -1,21 +1,20 @@
-import time
-from http.cookiejar import MozillaCookieJar
-import requests
+import hashlib
+import os
+import pathlib
 import re
 import subprocess
-import pathlib
-import hashlib
 import sys
-import os
+import requests
 
 
 def dl_url(toledo_url):
     # List of (p, entry_id) tuples
     videos = []
+    headers = {'Cookie': cookies}
 
     # Scrape video information from Toledo page
-    # r = requests.get(url, cookies=cj)
-    html_content = page
+    r = requests.get(url, headers=headers)
+    html_content = r.text
     for line in iter(html_content.splitlines()):
         if '<iframe name="KalturaIframe"' in line:
             pattern = '/p/(.+?)/sp/.*?/entry_id/(.*?)/version'
@@ -43,30 +42,14 @@ def dl_url(toledo_url):
     # Change back to parent folder after downloading all videos in list.
     os.chdir('..')
 
-    # # Shortens videos for path in dir_path.glob('*'): video_path = str(path) if not video_path.endswith(
-    # '_ALTERED.mp4') and not pathlib.Path('{}_ALTERED.mp4'.format(video_path[:-4])).is_file(): print('Shortening
-    # video {}'.format(video_path)) subprocess.run('cd jumpcutter; python3 jumpcutter.py --input_file "../{}" -snd 1
-    # -sil 20 -fm 6'.format(video_path), shell=True)
-
 
 # Cookies
 # Fix cookies.txt
-with open('cookies.txt', 'r') as original: data = original.read()
-with open('page.txt', 'r', encoding="utf-8") as owo: page = owo.read()
-# Fix 0 expiry time, see https://stackoverflow.com/questions/14742899/using-cookies-txt-file-with-python-requests
-expiry_time = round(time.time() + 14 * 24 * 3600)
-data = data.replace('\t0\t', '\t{}\t'.format(expiry_time))
-with open('cookies.txt', 'w') as modified:
-    if not data.startswith('# Netscape'):
-        # Add correct first line, see https://stackoverflow.com/questions/14742899/using-cookies-txt-file-with-python
-        # -requests
-        modified.write('# Netscape HTTP Cookie File\n' + data)
-    else:
-        modified.write(data)
-# Load cookies from cookies.txt
-cj = MozillaCookieJar('cookies.txt')
-cj.load(ignore_discard=True)
-print('Read {} cookies from cookies.txt'.format(len(cj)))
+with open('cookies.txt', 'r') as cookies_file:
+    cookies = cookies_file.read()
+
+with open('page.txt', 'r', encoding="utf-8") as page_file:
+    page = page_file.read()
 
 # Reading input file
 input_file = open(sys.argv[1], 'r')
