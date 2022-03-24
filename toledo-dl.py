@@ -46,7 +46,7 @@ def dl_url(toledo_url):
 # Cookies
 # Fix cookies.txt
 with open('cookies.txt', 'r') as cookies_file:
-    cookies = cookies_file.read()
+    cookies = cookies_file.read().replace("Cookie: ", "")
 
 # Reading input file
 input_file = open(sys.argv[1], 'r')
