@@ -13,7 +13,7 @@ It downloads all videos from one or more Toledo pages
 Do every time:
 
 2. Sign in to Toledo with your student account.
-3. Extract the cookies header value from the first request on a toledo course page in your network tab
+3. Extract the cookie header value from the first request on a toledo course page in your network tab, put the value into `cookies.txt`
 ![cookie copy example](cookie-copy-example.png)
 4. Run the toledo-dl script as follows:
 

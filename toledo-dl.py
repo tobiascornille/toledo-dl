@@ -48,9 +48,6 @@ def dl_url(toledo_url):
 with open('cookies.txt', 'r') as cookies_file:
     cookies = cookies_file.read()
 
-with open('page.txt', 'r', encoding="utf-8") as page_file:
-    page = page_file.read()
-
 # Reading input file
 input_file = open(sys.argv[1], 'r')
 for url in input_file.readlines():
