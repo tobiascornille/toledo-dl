@@ -38,7 +38,7 @@ def dl_url(toledo_url):
     # Download videos using youtube-dl
     for idx, video in enumerate(videos):
         print('Downloading video {}/{}'.format(idx + 1, len(videos)))
-        subprocess.run('youtube-dl -f "[protocol=m3u8_native]" kaltura:{}:{}'.format(video[0], video[1]), shell=True)
+        subprocess.run('youtube-dl -f best kaltura:{}:{}'.format(video[0], video[1]), shell=True)
     # Change back to parent folder after downloading all videos in list.
     os.chdir('..')
 
