@@ -49,7 +49,7 @@ with open('cookies.txt', 'r') as cookies_file:
     cookies = cookies_file.read() \
         .replace("Cookie: ", "") \
         .replace("\n", "") \
-        .strip(" ")  # strip with args to annoy people
+        .strip()
 
 # Reading input file
 input_file = open(sys.argv[1], 'r')

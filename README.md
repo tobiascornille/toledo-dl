@@ -12,10 +12,11 @@ It downloads all videos from one or more Toledo pages
 ---
 Do every time:
 
-2. Sign in to Toledo with your student account.
-3. Extract the cookie header value from the first request on a toledo course page in your network tab, put the value into `cookies.txt`
+2. Sign in on Toledo with your student account.
+3. Open the Web Developer Tools panel with `ctrl+shift+i` or `f12` 
+4. Extract the cookie header value from the first request on a toledo course page in your network tab, put the value into `cookies.txt`. *Make sure you're searching under the Request Headers*.
 ![cookie copy example](cookie-copy-example.png)
-4. Run the toledo-dl script as follows:
+5. Run the toledo-dl script as follows:
 
 ```
 python3 toledo-dl.py [INPUT_FILE]
