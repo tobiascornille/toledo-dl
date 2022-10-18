@@ -36,9 +36,18 @@ def dl_url(toledo_url):
     os.chdir(dir_path)
 
     # Download videos using youtube-dl
-    for idx, video in enumerate(videos):
-        print('Downloading video {}/{}'.format(idx + 1, len(videos)))
-        subprocess.run('youtube-dl -f best kaltura:{}:{}'.format(video[0], video[1]), shell=True)
+    # Check whether the last argument is an integer. If True only download last n videos of all videos from every link in urlq
+    to_download = sys.argv[-1]
+    if isinstance(to_download, int):
+        while to_download > 0:
+            print('Downloading video {}/{}'.format(len(videos)-to_download, len(videos)))
+            subprocess.run('youtube-dl -f best kaltura:{}:{}'.format(videos[len(videos)-to_download][0], videos[len(videos)-to_download][1]), shell=True)
+            to_download += -1
+    else:
+        for idx, video in enumerate(videos):
+            print('Downloading video {}/{}'.format(idx + 1, len(videos)))
+            subprocess.run('youtube-dl -f best kaltura:{}:{}'.format(video[0], video[1]), shell=True)
+
     # Change back to parent folder after downloading all videos in list.
     os.chdir('..')
 
