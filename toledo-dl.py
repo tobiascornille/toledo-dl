@@ -35,10 +35,22 @@ def dl_url(toledo_url):
     # For some reason cd command doesn't work on Windows. Took it out of the subprocess call.
     os.chdir(dir_path)
 
-    # Download videos using youtube-dl
-    for idx, video in enumerate(videos):
-        print('Downloading video {}/{}'.format(idx + 1, len(videos)))
-        subprocess.run('youtube-dl -f best kaltura:{}:{}'.format(video[0], video[1]), shell=True)
+    # Download videos using youtube-dl, if there were any videos found on the page
+    if len(videos) > 0:
+        # Check whether the last argument is an integer. If True only download last n videos of all videos from every link in urls
+        if sys.argv[-1].isdigit():
+            to_download = int(sys.argv[-1])
+            while to_download > 0:
+                print('Downloading video {}/{}'.format(len(videos)-to_download+1, len(videos)))
+                subprocess.run('youtube-dl -f best kaltura:{}:{}'.format(videos[len(videos)-to_download][0], videos[len(videos)-to_download][1]), shell=True)
+                to_download += -1
+        else:
+            for idx, video in enumerate(videos):
+                print('Downloading video {}/{}'.format(idx + 1, len(videos)))
+                subprocess.run('youtube-dl -f best kaltura:{}:{}'.format(video[0], video[1]), shell=True)
+    else:
+        print("No videos found, check if urls are correct or if cookies are still valid.")
+
     # Change back to parent folder after downloading all videos in list.
     os.chdir('..')
 
