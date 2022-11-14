@@ -60,7 +60,7 @@ def dl_url(toledo_url):
         else:
             if sys.argv[-1] == "top":
                 print("Check if you wanted to download only a certain amount of videos, no amount was specified")
-                return 
+                return
             for idx, video in enumerate(videos):
                 print('Downloading video {}/{}'.format(idx + 1, len(videos)))
                 subprocess.run('youtube-dl -f best kaltura:{}:{}'.format(video[0], video[1]), shell=True)
