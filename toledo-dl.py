@@ -40,11 +40,26 @@ def dl_url(toledo_url):
         # Check whether the last argument is an integer. If True only download last n videos of all videos from every link in urls
         if sys.argv[-1].isdigit():
             to_download = int(sys.argv[-1])
-            while to_download > 0:
-                print('Downloading video {}/{}'.format(len(videos)-to_download+1, len(videos)))
-                subprocess.run('youtube-dl -f best kaltura:{}:{}'.format(videos[len(videos)-to_download][0], videos[len(videos)-to_download][1]), shell=True)
-                to_download += -1
+            if sys.argv[-2] == "top":
+                print('Downloading first {} videos from a total of {} video(s)'.format(to_download, len(videos)))
+                idx = 0
+                while idx < to_download:
+                    print('Downloading video {}/{}'.format(idx + 1, to_download))
+                    subprocess.run('youtube-dl -f best kaltura:{}:{}'.format(videos[idx][0],
+                                                                             videos[idx][1]),
+                                   shell=True)
+                    idx += 1
+            else:
+                print('Downloading last {} videos from a total of {} video(s)'.format(to_download, len(videos)))
+                while to_download > 0:
+                    print('Downloading video {}/{}'.format(len(videos) - to_download + 1, len(videos)))
+                    subprocess.run('youtube-dl -f best kaltura:{}:{}'.format(videos[len(videos) - to_download][0],
+                                                                             videos[len(videos) - to_download][1]),
+                                   shell=True)
+                    to_download -= 1
         else:
+            if sys.argv[-1] == "top":
+                print("Check if you wanted to download only a certain amount of videos, no amount was specified")
             for idx, video in enumerate(videos):
                 print('Downloading video {}/{}'.format(idx + 1, len(videos)))
                 subprocess.run('youtube-dl -f best kaltura:{}:{}'.format(video[0], video[1]), shell=True)
