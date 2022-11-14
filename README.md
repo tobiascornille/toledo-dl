@@ -43,6 +43,7 @@ Additionally adding the `"top"` argument before the amount of videos to download
 python3 toledo-dl.py example.txt "top" 3
 ```
 This will download the *first* 3 videos from all urls found.
+Additionally adding the `"top"` argument before the amount of videos to download will download only the **first** n videos found from **all** urls.     
 
 ## Contributing
 Pull requests are welcome.
