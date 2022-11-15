@@ -20,14 +20,29 @@ Do every time:
 
 ```
 python3 toledo-dl.py [INPUT_FILE]
+or
+python3 toledo-dl.py [INPUT_FILE] [Integer]
 ```
 The script will create a new directory per url. This directory will contain the downloaded videos. If you re-run the script, it won't download or speed up the videos again, given that you don't change the name of the files/directories. This means you can re-run this script periodically and only process the new videos on the Toledo page. Do keep in mind you have to download your cookies again every time, because they expire quickly.
 
 ### Example
+#### Downloading all videos
 See `example.txt` for an example of the url file.
 ```
 python3 toledo-dl.py example.txt
 ```
+#### Downloading only the last n videos from all urls
+Adding the argument _Integer_ will only download the last n videos from **all** the videos found from **all** urls. 
+```
+python3 toledo-dl.py example.txt 5
+```
+Will then download only the last 5 videos found from all urls.
+#### Downloading only the first n videos from all urls
+Additionally adding the `"top"` argument before the amount of videos to download will download only the **first** n videos found from **all** urls.
+```
+python3 toledo-dl.py example.txt "top" 3
+```
+This will download the *first* 3 videos from all urls found. 
 
 ## Contributing
 Pull requests are welcome.
